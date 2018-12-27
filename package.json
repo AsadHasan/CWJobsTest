@@ -3,16 +3,14 @@
   "version": "1.0.0",
   "description": "Testing CWJobs website with selenium webdriver (javascript bindings), mocha and chai.",
   "devDependencies": {
+    "chai": "^4.2.0",
     "chromedriver": "^2.45.0",
-    "eslint": "^5.11.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "mocha": "^5.2.0",
-    "chai": "^4.2.0",
-    "selenium-webdriver": "^4.0.0-alpha.1"
+    "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha **/*.spec.js"
+    "test": "node_modules/.bin/mocha --timeout 15000 **/*.spec.js"
   },
   "repository": {
     "type": "git"
@@ -24,5 +22,9 @@
     "chai"
   ],
   "author": "Asad Hasan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^5.11.1",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
 }
