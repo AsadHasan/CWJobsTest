@@ -1,14 +1,19 @@
-class Homepage {
+import { By } from "selenium-webdriver";
+import BasePage from "./base.page";
+
+class Homepage extends BasePage {
   constructor(webdriver) {
-    this.driver = new webdriver.Builder().forBrowser("chrome").build();
+    super(webdriver);
+    this.driver = webdriver;
     this.searchBoxCSSLocator = "input#keywords[name=Keywords][type=search]";
     this.locationBoxCSSLocator = "input#location[type=search]";
-    this.searchBoxSelector = webdriver.By.css(this.searchBoxCSSLocator);
-    this.locationBoxSelector = webdriver.By.css(this.locationBoxCSSLocator);
+    this.searchBoxSelector = By.css(this.searchBoxCSSLocator);
+    this.locationBoxSelector = By.css(this.locationBoxCSSLocator);
   }
 
-  open() {
-    this.driver.get("https://www.cwjobs.co.uk/");
+  async open() {
+    await this.driver.get("https://www.cwjobs.co.uk/");
+    return this;
   }
 }
 
