@@ -1,5 +1,5 @@
-const driver = require('selenium-webdriver');
-const Homepage = require('../pages/home.page');
+import driver from 'selenium-webdriver';
+import Homepage from '../pages/home.page';
 
 describe('CW Jobs test', () => {
   // const webdriver = new driver.Builder().forBrowser('chrome').build();

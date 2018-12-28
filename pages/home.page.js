@@ -1,15 +1,15 @@
-// const webdriver = require('selenium-webdriver');
+class Homepage {
+  constructor(webdriver) {
+    this.driver = new webdriver.Builder().forBrowser('chrome').build();
+    this.searchBoxCSSLocator = 'input#keywords[name=Keywords][type=search]';
+    this.locationBoxCSSLocator = 'input#location[type=search]';
+    this.searchBoxSelector = webdriver.By.css(this.searchBoxCSSLocator);
+    this.locationBoxSelector = webdriver.By.css(this.locationBoxCSSLocator);
+  }
 
-const Homepage = function homepage(webdriver) {
-  this.driver = new webdriver.Builder().forBrowser('chrome').build();
-  this.searchBoxCSSLocator = 'input#keywords[name=Keywords][type=search]';
-  this.locationBoxCSSLocator = 'input#location[type=search]';
-  this.searchBoxSelector = this.driver.By.css(this.searchBoxCSSLocator);
-  this.locationBoxSelector = this.driver.By.css(this.locationBoxCSSLocator);
-
-  function open() {
+  open() {
     this.driver.get('https://www.cwjobs.co.uk/');
   }
-};
+}
 
-module.exports = Homepage;
+export default Homepage;
