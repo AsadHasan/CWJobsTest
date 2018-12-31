@@ -27,7 +27,7 @@
   },
   "scripts": {
     "flow": "flow",
-    "test": "node_modules/.bin/mocha --compilers js:@babel/register --require @babel/polyfill --timeout 15000 **/*.spec.js"
+    "test": "node_modules/.bin/mocha %NODE_DEBUG_OPTION% --compilers js:@babel/register --require @babel/polyfill --timeout 15000 **/*.spec.js"
   },
   "repository": {
     "type": "git"

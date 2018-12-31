@@ -1,5 +1,5 @@
 // @flow
-import { By, WebDriver } from "selenium-webdriver";
+import { By, WebDriver, WebElement } from "selenium-webdriver";
 import BasePage from "./base.page";
 
 class Homepage extends BasePage {
@@ -28,9 +28,12 @@ class Homepage extends BasePage {
   }
 
   async searchJob() {
-    const searchBox = super.getElementWhenLocated(this.searchBoxLocator);
-    const locationBox = super.getElementWhenLocated(this.locationBoxLocator);
-
+    const searchBox: WebElement = await super.getElementWhenLocated(
+      this.searchBoxLocator
+    );
+    const locationBox: WebElement = await super.getElementWhenLocated(
+      this.locationBoxLocator
+    );
     await searchBox.sendKeys("abc");
   }
 }
