@@ -1,7 +1,11 @@
+// @flow
+import { WebDriver } from "selenium-webdriver";
 import BasePage from "./base.page";
 
 class SearchPage extends BasePage {
-  constructor(webdriver) {
+  driver: WebDriver;
+
+  constructor(webdriver: WebDriver) {
     super(webdriver);
     this.driver = webdriver;
   }
