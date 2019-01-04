@@ -1,21 +1,29 @@
 // @flow
 import driver from "selenium-webdriver";
 import { expect } from "chai";
+import { describe, it, after } from "mocha";
 import Homepage from "../pages/home.page";
+import "chromedriver";
 
 describe("CW Jobs board", () => {
-  const webdriver = new driver.Builder().forBrowser("chrome").build();
-  const homepage = new Homepage(webdriver);
+  const webdriver: driver.ThenableWebDriver = new driver.Builder()
+    .forBrowser("chrome")
+    .build();
+  const homepage: Homepage = new Homepage(webdriver);
 
   it("should display homepage", async () => {
-    const expectedTitle =
+    const expectedTitle: string =
       "IT jobs | Permanent & contract IT careers | The UK IT Jobs Board at CWJobs.co.uk";
     await homepage.open();
-    const actualTitle = await homepage.getPageTitle();
+    const actualTitle: string = await homepage.getPageTitle();
     expect(actualTitle).to.equal(expectedTitle);
   });
 
   it("should allow job search", async () => {
     await homepage.searchJob("tester", "Bradford");
+  });
+
+  after(async () => {
+    await webdriver.quit();
   });
 });

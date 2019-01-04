@@ -9,7 +9,7 @@ class Homepage extends BasePage {
 
   locationBoxCSS: string;
 
-  locationRadiusMenuCSS: string
+  locationRadiusMenuCSS: string;
 
   searchBoxLocator: By;
 
@@ -22,10 +22,10 @@ class Homepage extends BasePage {
     this.driver = webdriver;
     this.searchBoxCSS = "input#keywords[name=Keywords][type=search]";
     this.locationBoxCSS = "input#location[type=search]";
-    this.locationRadiusMenuCSS= "select#Radius[name=Radius]";
+    this.locationRadiusMenuCSS = "select#Radius[name=Radius]";
     this.searchBoxLocator = By.css(this.searchBoxCSS);
     this.locationBoxLocator = By.css(this.locationBoxCSS);
-    this.locationRadiusMenuLocator= By.css(this.locationRadiusMenuCSS);
+    this.locationRadiusMenuLocator = By.css(this.locationRadiusMenuCSS);
   }
 
   async open() {
@@ -33,7 +33,7 @@ class Homepage extends BasePage {
     return this;
   }
 
-  async searchJob(job:string,location:string) {
+  async searchJob(job: string, location: string) {
     const searchBox: WebElement = await super.getElementWhenLocated(
       this.searchBoxLocator
     );
@@ -43,7 +43,7 @@ class Homepage extends BasePage {
     const locationRadiusMenuBox: WebElement = await super.getElementWhenLocated(
       this.locationRadiusMenuLocator
     );
-    
+
     await searchBox.sendKeys(job);
     await locationBox.sendKeys(location);
     await locationRadiusMenuBox.click();
