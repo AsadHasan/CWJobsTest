@@ -14,13 +14,13 @@ describe("CW Jobs board", () => {
   it("should display homepage", async () => {
     const expectedTitle: string =
       "IT jobs | Permanent & contract IT careers | The UK IT Jobs Board at CWJobs.co.uk";
-    await homepage.open();
-    const actualTitle: string = await homepage.getPageTitle();
+    homepage.open();
+    const actualTitle: string = homepage.getPageTitle();
     expect(actualTitle).to.equal(expectedTitle);
   });
 
   it("should allow job search", async () => {
-    await homepage.searchJob("tester", "Bradford");
+    await homepage.searchJob("tester", "Bradford", "5");
   });
 
   after(async () => {

@@ -11,11 +11,15 @@ class Homepage extends BasePage {
 
   locationRadiusMenuCSS: string;
 
+  locationRadiusMenuOptionCSS: string;
+
   searchBoxLocator: By;
 
   locationBoxLocator: By;
 
   locationRadiusMenuLocator: By;
+
+  locationRadiusMenuOptionLocator: By;
 
   constructor(webdriver: WebDriver) {
     super(webdriver);
@@ -28,12 +32,12 @@ class Homepage extends BasePage {
     this.locationRadiusMenuLocator = By.css(this.locationRadiusMenuCSS);
   }
 
-  async open() {
+  async open(): Homepage {
     await this.driver.get("https://www.cwjobs.co.uk/");
     return this;
   }
 
-  async searchJob(job: string, location: string) {
+  async searchJob(job: string, location: string, locationRadius: string) {
     const searchBox: WebElement = await super.getElementWhenLocated(
       this.searchBoxLocator
     );
@@ -47,6 +51,18 @@ class Homepage extends BasePage {
     await searchBox.sendKeys(job);
     await locationBox.sendKeys(location);
     await locationRadiusMenuBox.click();
+
+    this.locationRadiusMenuOptionCSS = `${
+      this.locationRadiusMenuCSS
+    }>option[value=${locationRadius}]`;
+    this.locationRadiusMenuOptionLocator = By.css(
+      this.locationRadiusMenuOptionCSS
+    );
+    const locationRadiusMenuOption: WebElement = await super.getElementWhenLocated(
+      this.locationRadiusMenuOptionLocator
+    );
+
+    await locationRadiusMenuOption.click();
   }
 }
 

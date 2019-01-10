@@ -1,5 +1,5 @@
 // @flow
-import { By, until, WebDriver } from "selenium-webdriver";
+import { By, until, WebDriver, WebElement } from "selenium-webdriver";
 
 class BasePage {
   driver: WebDriver;
@@ -8,13 +8,15 @@ class BasePage {
     this.driver = webdriver;
   }
 
-  getPageTitle() {
-    return this.driver.getTitle();
+  async getPageTitle(): string {
+    const title: string = await this.driver.getTitle();
+    return title;
   }
 
-  getElementWhenLocated(locator: By) {
-    this.driver.wait(until.elementLocated(locator));
-    return this.driver.findElement(locator);
+  async getElementWhenLocated(locator: By): WebElement {
+    await this.driver.wait(until.elementLocated(locator));
+    const element: WebElement = await this.driver.findElement(locator);
+    return element;
   }
 }
 
