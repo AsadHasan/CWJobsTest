@@ -24,6 +24,6 @@ describe("CW Jobs board", () => {
   });
 
   after(async () => {
-    //  await webdriver.quit();
+    await webdriver.quit();
   });
 });
