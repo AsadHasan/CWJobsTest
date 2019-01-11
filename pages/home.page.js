@@ -1,5 +1,5 @@
 // @flow
-import { By, WebDriver, WebElement } from "selenium-webdriver";
+import { By, WebDriver, WebElement, Key } from "selenium-webdriver";
 import BasePage from "./base.page";
 
 class Homepage extends BasePage {
@@ -11,15 +11,11 @@ class Homepage extends BasePage {
 
   locationRadiusMenuCSS: string;
 
-  locationRadiusMenuOptionCSS: string;
-
   searchBoxLocator: By;
 
   locationBoxLocator: By;
 
   locationRadiusMenuLocator: By;
-
-  locationRadiusMenuOptionLocator: By;
 
   constructor(webdriver: WebDriver) {
     super(webdriver);
@@ -48,21 +44,11 @@ class Homepage extends BasePage {
       this.locationRadiusMenuLocator
     );
 
-    await searchBox.sendKeys(job);
-    await locationBox.sendKeys(location);
-    await locationRadiusMenuBox.click();
-
-    this.locationRadiusMenuOptionCSS = `${
-      this.locationRadiusMenuCSS
-    }>option[value=${locationRadius}]`;
-    this.locationRadiusMenuOptionLocator = By.css(
-      this.locationRadiusMenuOptionCSS
-    );
-    const locationRadiusMenuOption: WebElement = await super.getElementWhenLocated(
-      this.locationRadiusMenuOptionLocator
-    );
-
-    await locationRadiusMenuOption.click();
+    await super.typeWhenReady(searchBox, job);
+    await super.typeWhenReady(locationBox, location);
+    await super.clickWhenReady(locationRadiusMenuBox);
+    await super.typeWhenReady(locationRadiusMenuBox, locationRadius);
+    await super.typeWhenReady(locationRadiusMenuBox, Key.ENTER);
   }
 }
 

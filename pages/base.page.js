@@ -18,6 +18,16 @@ class BasePage {
     const element: WebElement = await this.driver.findElement(locator);
     return element;
   }
+
+  async clickWhenReady(element: WebElement): void {
+    await this.driver.wait(until.elementIsVisible(element));
+    await element.click();
+  }
+
+  async typeWhenReady(element: WebElement, text: string): void {
+    await this.driver.wait(until.elementIsVisible(element));
+    await element.sendKeys(text);
+  }
 }
 
 export default BasePage;

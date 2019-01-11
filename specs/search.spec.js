@@ -14,8 +14,8 @@ describe("CW Jobs board", () => {
   it("should display homepage", async () => {
     const expectedTitle: string =
       "IT jobs | Permanent & contract IT careers | The UK IT Jobs Board at CWJobs.co.uk";
-    homepage.open();
-    const actualTitle: string = homepage.getPageTitle();
+    await homepage.open();
+    const actualTitle: string = await homepage.getPageTitle();
     expect(actualTitle).to.equal(expectedTitle);
   });
 
@@ -24,6 +24,6 @@ describe("CW Jobs board", () => {
   });
 
   after(async () => {
-    await webdriver.quit();
+    //  await webdriver.quit();
   });
 });
