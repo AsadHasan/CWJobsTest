@@ -1,6 +1,5 @@
 // @flow
 import { ThenableWebDriver, WebElement, Builder } from "selenium-webdriver";
-// import WebElement from "selenium-webdriver";
 import { expect } from "chai";
 import { describe, it, after } from "mocha";
 import Homepage from "../pages/home.page";
@@ -21,7 +20,7 @@ describe("CW Jobs board", () => {
     await expect(actualTitle).to.equal(expectedTitle);
   });
 
-  it("should allow job search", async () => {
+  it("should show search results", async () => {
     const searchPage: SearchPage = await homepage.searchJob(
       "tester",
       "Bradford",
