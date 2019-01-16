@@ -19,6 +19,12 @@ class BasePage {
     return element;
   }
 
+  async getElementsWhenLocated(locator: By): WebElement[] {
+    await this.driver.wait(until.elementsLocated);
+    const elements: WebElement[] = await this.driver.findElements(locator);
+    return elements;
+  }
+
   async clickWhenReady(element: WebElement): void {
     await this.driver.wait(until.elementIsVisible(element));
     await element.click();
